@@ -1,5 +1,5 @@
 #include <X11/X.h>
-#include<X11/Xlib.h>
+#include <X11/Xlib.h>
 #include <X11/Xutil.h>
 #include <X11/XKBlib.h>
 #include <stdlib.h>
@@ -68,33 +68,33 @@ int main(){
 						case CreateNotify:
 								break;
 						case KeyPress:
-									kevent = event.xkey;
-									ks = XkbKeycodeToKeysym(dpy,kevent.keycode,0,0);	
-											if (event.xkey.subwindow)
-												keypressfunc(ks,dpy,event.xkey.subwindow);
-									break;
+								kevent = event.xkey;
+								ks = XkbKeycodeToKeysym(dpy,kevent.keycode,0,0);	
+										if (event.xkey.subwindow)
+											keypressfunc(ks,dpy,event.xkey.subwindow);
+								break;
 						case ButtonPress:
-									XGrabPointer(dpy, event.xbutton.subwindow, True,
-										PointerMotionMask|ButtonReleaseMask, GrabModeAsync,
-										GrabModeAsync, None, None, CurrentTime);
-									XGetWindowAttributes(dpy, event.xbutton.subwindow, &attr);
-									bevent = event.xbutton;
-									break;
+								XGrabPointer(dpy, event.xbutton.subwindow, True,
+									PointerMotionMask|ButtonReleaseMask, GrabModeAsync,
+									GrabModeAsync, None, None, CurrentTime);
+								XGetWindowAttributes(dpy, event.xbutton.subwindow, &attr);
+								bevent = event.xbutton;
+								break;
 						case MotionNotify: 
-									while(XCheckTypedEvent(dpy, MotionNotify, &event));
-									xdiff = event.xbutton.x_root - bevent.x_root;
-									ydiff = event.xbutton.y_root - bevent.y_root;
-									XMoveResizeWindow(dpy, event.xmotion.window,
-									   	attr.x + (bevent.button==1 ? xdiff : 0),
-										attr.y + (bevent.button==1 ? ydiff : 0),
-										MAX(1, attr.width + (bevent.button==3 ? xdiff : 0)),
-										MAX(1, attr.height + (bevent.button==3 ? ydiff : 0)));
-									break;
+								while(XCheckTypedEvent(dpy, MotionNotify, &event));
+								xdiff = event.xbutton.x_root - bevent.x_root;
+								ydiff = event.xbutton.y_root - bevent.y_root;
+								XMoveResizeWindow(dpy, event.xmotion.window,
+								   	attr.x + (bevent.button==1 ? xdiff : 0),
+									attr.y + (bevent.button==1 ? ydiff : 0),
+									MAX(1, attr.width + (bevent.button==3 ? xdiff : 0)),
+									MAX(1, attr.height + (bevent.button==3 ? ydiff : 0)));
+								break;
 						case ButtonRelease:
-									XUngrabPointer(dpy,CurrentTime);
-									break;
+								XUngrabPointer(dpy,CurrentTime);
+								break;
 						case KeyRelease:
-									break;
+								break;
 						default: printf("Error!");
 				}
 		}
@@ -124,7 +124,7 @@ void keypressfunc(KeySym Sym,Display *dpy,Window sw){
 					XRaiseWindow(dpy,sw);
 					break;
 				case XK_c: /*Super + c*/
-					XDestroyWindow(dpy,sw );
+					XDestroyWindow(dpy,sw);
 					break;
 				default: break;
 
