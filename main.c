@@ -35,6 +35,7 @@ XButtonEvent bevent;
 XEvent event; 
 XKeyEvent kevent;
 KeySym ks;
+bool running=true;
 
 /*Function declarations*/
 void spawn(char* arg[],Display *dpy);
@@ -42,7 +43,6 @@ void keypressfunc(KeySym Sym,Display *dpy,Window sw);
 
 int main(){
 		int xdiff, ydiff;
-		bool running=true;
 
 
 		/*
@@ -66,6 +66,7 @@ int main(){
 		XGrabKey(dpy,XKeysymToKeycode(dpy,XStringToKeysym("t")),Mod4Mask,root,True,GrabModeAsync,GrabModeAsync);
 		XGrabKey(dpy,XKeysymToKeycode(dpy,XStringToKeysym("c")),Mod4Mask,root,True,GrabModeAsync,GrabModeAsync);
 		XGrabKey(dpy,XKeysymToKeycode(dpy,XStringToKeysym("r")),Mod4Mask,root,True,GrabModeAsync,GrabModeAsync);
+		XGrabKey(dpy,XKeysymToKeycode(dpy,XStringToKeysym("q")),Mod4Mask,root,True,GrabModeAsync,GrabModeAsync);
 
 		/*
 		 *Uses mouse input + Super key to perform certain tasks
@@ -153,6 +154,9 @@ void keypressfunc(KeySym Sym,Display *dpy,Window sw){
 				case XK_t:  /*Super + t*/
 					spawn(term,dpy);
 					break;
+				case XK_q:
+					running = false;
+					break;
 				case XK_u: /*Super + u*/
 					if(event.xkey.subwindow)
 							XRaiseWindow(dpy,sw);
@@ -169,5 +173,5 @@ void keypressfunc(KeySym Sym,Display *dpy,Window sw){
 					}
 					break;
 				default: break;
-} 
+		} 
 }
