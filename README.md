@@ -18,6 +18,7 @@ Super + u : Raises a window above
 Super + q : Quits nwm
 Super + Left Mouse Button + Drag  : Moves window
 Super + Right Mouse Button + Drag : Resize window
+(Automatically sets wallpaper using nitrogen)
 
 ```
 
@@ -31,7 +32,7 @@ Super + Right Mouse Button + Drag : Resize window
 >
 > use Xephy to test run.
 
-
+> Make sure to install rofi , nitrogen and alacritty or change source code accordingly.
 
 ## Video/Demo:
 
