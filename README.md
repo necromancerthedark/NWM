@@ -26,7 +26,7 @@ Super + Right Mouse Button + Drag : Resize window
 
 ## Compilation and Running:
 
-> Requirement: Linux system with Xorg.
+> Requirement: Any system with Xorg and X11.
 
 > To run just clone the repo and then type "make" it will produce the executable.
 >
